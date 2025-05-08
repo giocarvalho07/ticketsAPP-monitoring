@@ -8,3 +8,12 @@ scrape_configs:
       - targets: ["host.docker.internal:8080"]
         labels:
           application: "api-tickets"
+
+rule_files:
+  - 'rules/alerts.yml'
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - 'alertmanager:9093'

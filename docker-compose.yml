@@ -7,20 +7,35 @@ networks:
 volumes:
   prometheus_data:
   grafana_data:
+  db_data:
 
 services:
   prometheus:
     image: prom/prometheus:latest
     volumes:
       - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./config/rules:/etc/prometheus/rules
       - prometheus_data:/prometheus
     networks:
       - aw-network
     ports:
       - 9090:9090
+
   grafana:
     image: grafana/grafana:latest
     ports:
       - 3000:3000
     networks:
       - aw-network
+
+  alertmanager:
+    image: prom/alertmanager:latest
+    ports:
+      - "9093:9093"
+    volumes:
+      - ./config/alertmanager.yml:/etc/alertmanager/alertmanager.yml
+    command:
+      - '--config.file=/etc/alertmanager/alertmanager.yml'
+    networks:
+      - aw-network
+

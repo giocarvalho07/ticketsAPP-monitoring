@@ -1,0 +1,15 @@
+global:
+  resolve_timeout: 5m
+
+route:
+  receiver: 'email-on-start'
+
+receivers:
+  - name: 'email-on-start'
+email_configs:
+  - to: 'giovannidecarvalhomendes@gmail.com'
+    from: 'giovannidecarvalhomendes@outlook.com'
+    smarthost: 'smtp.gmail.com:587'
+    auth_username: 'giovannidecarvalhomendes@gmail.com'
+    auth_password: 'Gigio@140175'
+    tls: true
