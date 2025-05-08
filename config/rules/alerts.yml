@@ -10,12 +10,3 @@ groups:
         annotations:
           summary: "Aplicação Iniciada"
           description: "A aplicação Spring Boot (job {{ $labels.job }}, instance {{ $labels.instance }}) foi iniciada."
-
-  - alert: High4xxErrorRate
-    expr: increase(http_server_requests_seconds_count{application="api-tickets", status=~"4.."}[5m]) / increase(http_server_requests_seconds_count{application="api-tickets"}[5m]) > 0.05 # Mais de 5% de erros 4xx
-    for: 1m
-    labels:
-      severity: warning
-    annotations:
-      summary: "Alta Taxa de Erros 4xx"
-      description: "A taxa de erros HTTP 4xx (erros do cliente) na aplicação está acima de 5%."

@@ -7,7 +7,6 @@ networks:
 volumes:
   prometheus_data:
   grafana_data:
-  db_data:
 
 services:
   prometheus:
