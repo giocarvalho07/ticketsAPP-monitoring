@@ -6,10 +6,11 @@ route:
 
 receivers:
   - name: 'email-on-start'
-email_configs:
-  - to: 'giovannidecarvalhomendes@gmail.com'
-    from: 'giovannidecarvalhomendes@outlook.com'
-    smarthost: 'smtp.gmail.com:587'
-    auth_username: 'giovannidecarvalhomendes@gmail.com'
-    auth_password: 'Gigio@140175'
-    tls: true
+    email_configs:
+      - to: 'seu_email@example.com' # Substitua pelo seu e-mail
+        from: 'alertmanager@seu_dominio.com' # Ajuste o remetente
+        smarthost: 'smtp.gmail.com:587' # Use o servidor SMTP do seu provedor
+        auth_username: 'seu_email@example.com' # Seu nome de usuário do SMTP
+        auth_password: 'sua_senha_ou_senha_de_aplicativo' # Sua senha do SMTP (ou senha de aplicativo para Gmail com 2FA)
+        tls_config:
+          insecure_skip_verify: false
