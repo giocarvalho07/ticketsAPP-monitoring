@@ -1,0 +1,264 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_source": "insomnia.desktop",
+  "__export_date": "2026-07-25T00:00:00.000Z",
+  "resources": [
+    {
+      "_id": "wrk_tickets",
+      "_type": "workspace",
+      "name": "Tickets API",
+      "description": "API REST Spring Boot - Gerenciamento de Usuários e Pedidos",
+      "scope": "collection",
+      "parentId": null
+    },
+    {
+      "_id": "env_base",
+      "_type": "environment",
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://localhost:8080"
+      },
+      "parentId": "wrk_tickets"
+    },
+    {
+      "_id": "env_prod",
+      "_type": "environment",
+      "name": "Produção",
+      "data": {
+        "base_url": "https://api.tickets.com"
+      },
+      "parentId": "wrk_tickets"
+    },
+    {
+      "_id": "folder_users",
+      "_type": "request_group",
+      "name": "Users",
+      "description": "Endpoints de gerenciamento de usuários",
+      "parentId": "wrk_tickets"
+    },
+    {
+      "_id": "folder_orders",
+      "_type": "request_group",
+      "name": "Orders",
+      "description": "Endpoints de gerenciamento de pedidos",
+      "parentId": "wrk_tickets"
+    },
+    {
+      "_id": "req_list_users",
+      "_type": "request",
+      "name": "Listar todos os Users",
+      "method": "GET",
+      "url": "{{ _.base_url }}/users",
+      "body": { "mimeType": "" },
+      "headers": [],
+      "authentication": {},
+      "parentId": "folder_users",
+      "parameters": [],
+      "preRequestScript": "",
+      "afterResponseScript": ""
+    },
+    {
+      "_id": "req_get_user_email",
+      "_type": "request",
+      "name": "Buscar User por Email",
+      "method": "GET",
+      "url": "{{ _.base_url }}/users/email/{{ _.email }}",
+      "body": { "mimeType": "" },
+      "headers": [],
+      "authentication": {},
+      "parentId": "folder_users",
+      "parameters": [],
+      "preRequestScript": "",
+      "afterResponseScript": ""
+    },
+    {
+      "_id": "req_detail_user",
+      "_type": "request",
+      "name": "Detalhe do User com Orders",
+      "method": "GET",
+      "url": "{{ _.base_url }}/users/detalhe-usuario/{{ _.user_id }}",
+      "body": { "mimeType": "" },
+      "headers": [],
+      "authentication": {},
+      "parentId": "folder_users",
+      "parameters": [],
+      "preRequestScript": "",
+      "afterResponseScript": ""
+    },
+    {
+      "_id": "req_create_user",
+      "_type": "request",
+      "name": "Criar User",
+      "method": "POST",
+      "url": "{{ _.base_url }}/users",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"João Silva\",\n  \"email\": \"joao@email.com\"\n}"
+      },
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "authentication": {},
+      "parentId": "folder_users",
+      "parameters": [],
+      "preRequestScript": "",
+      "afterResponseScript": ""
+    },
+    {
+      "_id": "req_update_user",
+      "_type": "request",
+      "name": "Atualizar User",
+      "method": "PUT",
+      "url": "{{ _.base_url }}/users/{{ _.user_id }}",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"João Santos\",\n  \"email\": \"joao.santos@email.com\"\n}"
+      },
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "authentication": {},
+      "parentId": "folder_users",
+      "parameters": [],
+      "preRequestScript": "",
+      "afterResponseScript": ""
+    },
+    {
+      "_id": "req_delete_user",
+      "_type": "request",
+      "name": "Deletar User",
+      "method": "DELETE",
+      "url": "{{ _.base_url }}/users/{{ _.user_id }}",
+      "body": { "mimeType": "" },
+      "headers": [],
+      "authentication": {},
+      "parentId": "folder_users",
+      "parameters": [],
+      "preRequestScript": "",
+      "afterResponseScript": ""
+    },
+    {
+      "_id": "req_list_orders",
+      "_type": "request",
+      "name": "Listar todos os Orders",
+      "method": "GET",
+      "url": "{{ _.base_url }}/orders",
+      "body": { "mimeType": "" },
+      "headers": [],
+      "authentication": {},
+      "parentId": "folder_orders",
+      "parameters": [],
+      "preRequestScript": "",
+      "afterResponseScript": ""
+    },
+    {
+      "_id": "req_detail_order",
+      "_type": "request",
+      "name": "Detalhe do Order com User",
+      "method": "GET",
+      "url": "{{ _.base_url }}/orders/detalhe/{{ _.order_id }}",
+      "body": { "mimeType": "" },
+      "headers": [],
+      "authentication": {},
+      "parentId": "folder_orders",
+      "parameters": [],
+      "preRequestScript": "",
+      "afterResponseScript": ""
+    },
+    {
+      "_id": "req_create_order",
+      "_type": "request",
+      "name": "Criar Order",
+      "method": "POST",
+      "url": "{{ _.base_url }}/orders",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"item\": \"Notebook Dell\",\n  \"quantity\": 1,\n  \"value\": 4500.00,\n  \"user\": {\n    \"idUser\": 1\n  }\n}"
+      },
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "authentication": {},
+      "parentId": "folder_orders",
+      "parameters": [],
+      "preRequestScript": "",
+      "afterResponseScript": ""
+    },
+    {
+      "_id": "req_update_order",
+      "_type": "request",
+      "name": "Atualizar Order",
+      "method": "PUT",
+      "url": "{{ _.base_url }}/orders/{{ _.order_id }}",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"item\": \"Notebook Dell Inspiron\",\n  \"quantity\": 2,\n  \"value\": 4200.00,\n  \"user\": {\n    \"idUser\": 1\n  }\n}"
+      },
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" }
+      ],
+      "authentication": {},
+      "parentId": "folder_orders",
+      "parameters": [],
+      "preRequestScript": "",
+      "afterResponseScript": ""
+    },
+    {
+      "_id": "req_delete_order",
+      "_type": "request",
+      "name": "Deletar Order",
+      "method": "DELETE",
+      "url": "{{ _.base_url }}/orders/{{ _.order_id }}",
+      "body": { "mimeType": "" },
+      "headers": [],
+      "authentication": {},
+      "parentId": "folder_orders",
+      "parameters": [],
+      "preRequestScript": "",
+      "afterResponseScript": ""
+    },
+    {
+      "_id": "req_health",
+      "_type": "request",
+      "name": "Health Check (Actuator)",
+      "method": "GET",
+      "url": "{{ _.base_url }}/actuator/health",
+      "body": { "mimeType": "" },
+      "headers": [],
+      "authentication": {},
+      "parentId": "wrk_tickets",
+      "parameters": [],
+      "preRequestScript": "",
+      "afterResponseScript": ""
+    },
+    {
+      "_id": "req_metrics",
+      "_type": "request",
+      "name": "Metrics (Actuator)",
+      "method": "GET",
+      "url": "{{ _.base_url }}/actuator/metrics",
+      "body": { "mimeType": "" },
+      "headers": [],
+      "authentication": {},
+      "parentId": "wrk_tickets",
+      "parameters": [],
+      "preRequestScript": "",
+      "afterResponseScript": ""
+    },
+    {
+      "_id": "req_prometheus",
+      "_type": "request",
+      "name": "Prometheus Metrics (Actuator)",
+      "method": "GET",
+      "url": "{{ _.base_url }}/actuator/prometheus",
+      "body": { "mimeType": "" },
+      "headers": [],
+      "authentication": {},
+      "parentId": "wrk_tickets",
+      "parameters": [],
+      "preRequestScript": "",
+      "afterResponseScript": ""
+    }
+  ]
+}

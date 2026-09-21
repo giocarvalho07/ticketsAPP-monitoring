@@ -7,6 +7,7 @@ networks:
 volumes:
   prometheus_data:
   grafana_data:
+  mysql_data:
 
 services:
   prometheus:
@@ -35,6 +36,18 @@ services:
       - ./config/alertmanager.yml:/etc/alertmanager/alertmanager.yml
     command:
       - '--config.file=/etc/alertmanager/alertmanager.yml'
+    networks:
+      - aw-network
+
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: tickets
+    volumes:
+      - mysql_data:/var/lib/mysql
     networks:
       - aw-network
 

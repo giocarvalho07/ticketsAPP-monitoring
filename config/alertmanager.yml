@@ -3,14 +3,23 @@ global:
 
 route:
   receiver: 'email-on-start'
+  group_by: ['alertname', 'job']
+  group_wait: 10s
+  group_interval: 10s
+  repeat_interval: 1h
 
 receivers:
   - name: 'email-on-start'
     email_configs:
-      - to: 'seu_email@example.com' # Substitua pelo seu e-mail
-        from: 'alertmanager@seu_dominio.com' # Ajuste o remetente
-        smarthost: 'smtp.gmail.com:587' # Use o servidor SMTP do seu provedor
-        auth_username: 'seu_email@example.com' # Seu nome de usuário do SMTP
-        auth_password: 'sua_senha_ou_senha_de_aplicativo' # Sua senha do SMTP (ou senha de aplicativo para Gmail com 2FA)
+      # ============================================================
+      # CONFIGURACAO REAL - SUBSTITUA PELOS SEUS DADOS
+      # ============================================================
+      - to: 'giovannidecarvalhomendes@gmail.com'          # Email que RECEBE o alerta
+        from: 'alertmanager.senha@gmail.com' # Email que ENVIA o alerta
+        smarthost: 'smtp.gmail.com:587'     # Servidor SMTP do Gmail
+        auth_username: 'alertmanager.senha@gmail.com'  # Mesmo do 'from'
+        auth_password: 'xxxx xxxx xxxx xxxx'           # Senha de app do Gmail (NAO a senha normal)
+        headers:
+          Subject: '[ALERT Tickets API] - {{ .GroupLabels.alertname }}'
         tls_config:
           insecure_skip_verify: false
